@@ -1,4 +1,4 @@
-#include "lists.h"
+#include "linked_lists.h"
 
 //ERROR HANDLING - here temp till error handling sorted
 void RaiseMemoryError() {
