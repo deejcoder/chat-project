@@ -48,12 +48,10 @@ int push( list *l, int val ) {
 		l->last = n;
 	}
 	else {
-		/* else move head along, set as head.
-				note; l->last = inital l->head 
+		/* insert at the end, set last to n
 		*/
 		l->last->next = n;
 		l->last = n;
-		printf( "%d", l->last->value );
 	}
 	l->size++;
 	return val;
