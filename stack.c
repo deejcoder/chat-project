@@ -4,7 +4,7 @@
 /* Initilize a new stack struct s with the size of each element. returns 1 on sucess -1 otherwise */
 
 
-int stack_init(struct stack *s, size_t data_size) {
+int stack_init(struct stack *s, size_t data_size, unsigned int init_buffer_count) {
 	//s assumed to allocated from caller
 	if(data_size <= 0) {
 		//TODO: err
@@ -15,7 +15,11 @@ int stack_init(struct stack *s, size_t data_size) {
 	}
 
 	s->s_data_size = data_size;
-	if(!calloc(2, s->s_data_size)) { 
+
+    unsigned int count_to_alloc = (init_buffer_count == 0) ? 2 : init_buffer_count;
+
+    s->s_arr = calloc(count_to_alloc, s->s_data_size);
+	if(!s->s_arr) { 
 		perror("stack_init");
 		return -1; 
 	}
