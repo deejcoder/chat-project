@@ -4,5 +4,7 @@
 #ignore all .swp file - from vim
 *.swp
 
-#anything that we might test later on
-test/
+#ignore all binaries and object files in test/ except source files for tests
+test/*
+!test/*.c
+!test/*.h
