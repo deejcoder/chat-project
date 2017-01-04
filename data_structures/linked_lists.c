@@ -31,13 +31,16 @@ list *list_init() {
 	return l;
 }
 
-int push( list *l, int val ) {
+int list_push( list *l, int key, int val ) {
 	//add a new node
 	struct node *n;
 	n = malloc( sizeof( struct node ) );
 	if( n == NULL ) {
 		RaiseMemoryError();	
 	}
+	
+	//set the node's key/identifer
+	n->key = key;
 	
 	//set the node's value
 	n->value = val;
@@ -47,6 +50,7 @@ int push( list *l, int val ) {
 		l->head = n;
 		l->last = n;
 	}
+	
 	else {
 		/* insert at the end, set last to n
 		*/
@@ -55,6 +59,17 @@ int push( list *l, int val ) {
 	}
 	l->size++;
 	return val;
+}
+
+int list_search( list *l, int nkey ) {
+	struct node *current = l->head;
+	while( current != NULL ) {
+		if( current->key == nkey ) {
+			return current->value;
+		}
+		current = current->next;
+	}
+	return -1;	
 }
 
 int removefirst( list *l ) {
@@ -99,5 +114,3 @@ int list_free( list *l, int index ) {
 	}
 	return -1;
 }
-
-void main() {}
